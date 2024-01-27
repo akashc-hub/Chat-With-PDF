@@ -11,9 +11,10 @@ const Providers = ({children}: PropsWithChildren) => {
     links : [
         httpBatchLink({
             url: 'http://localhost:3000/api/trpc'
-        })
-    ]
-  }))
+        }),
+    ],
+  })
+  )
    return (
     <trpc.Provider 
         client={trpcClient} 

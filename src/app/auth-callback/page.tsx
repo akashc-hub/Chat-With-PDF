@@ -1,20 +1,13 @@
-import { useRouter, useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation";
+import { trpc } from "../_trpc/client";
 
 const Page = async () => {
-    const router = useRouter()
+  const router = useRouter();
     
-    const searchParams = useSearchParams()
-    const origin = searchParams.get('origin')
+  const searchParams = useSearchParams();
+  const origin = searchParams.get('origin');
 
-    const apiResponse = await fetch('api/whatever')
+  // const { data, isLoading } = trpc.test.useQuery();
+};
 
-    const data = await apiResponse.json()
-
-  return (
-    <div>
-      
-    </div>
-  )
-}
-
-export default Page
+export default Page;
