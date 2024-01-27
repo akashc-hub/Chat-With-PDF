@@ -10,19 +10,20 @@ const Navbar = () => {
         <MaxWidthWrapper>
             <div className="flex h-14 items-center justify-between border-b border-zinc-200">
               <>
-                <Link 
+              <a className="flex z-40 font-semibold" href="/">File Talk</a>
+                {/* <Link 
                   href="/" 
                   className="flex z-40 font-semibold">
-                    <span>FileTalk...</span>
-                </Link>
+                    <div>Quill...</div>
+                </Link> */}
                 </>
                 {/* Todo : add mobile navbar */}
                 <div className="hidden items-center space-x-4 sm:flex">
                   <>
-                    <Link href="/pricing" className={buttonVariants({
+                    <a href="/pricing" className={buttonVariants({
                       variant: "ghost",
                       size: "sm",
-                    })}>Pricing</Link>
+                    })}>Pricing</a>
                     <LoginLink className={buttonVariants({
                       variant: "ghost",
                       size: "sm",
