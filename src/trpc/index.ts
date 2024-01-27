@@ -11,25 +11,26 @@ export const appRouter = router({
     if (!user?.id || !user?.email) {
       throw new TRPCError({ code: "UNAUTHORIZED" });
 
-      //check if user is in the Database
+      // Check if user is in the Database
       const dbUser = await db.user.findFirst({
-        where : {
-        id : user?.id
-        }
-      })
+        where: {
+          id: user?.id ?? '', // Use optional chaining and nullish coalescing to handle null or undefined
+        },
+      });
+
       if (!dbUser) {
-        // create user in db
+        // Create user in db
         await db.user.create({
-          data : {
-            id : user.id,
-            email : user.email
-          }
-        })
+          data: {
+            id: user?.id ?? '',
+            email: user?.email ?? '',
+          },
+        });
       }
 
-      return {success : true}
+      return { success: true };
     }
-  })
+  }),
 });
 
 export type AppRouter = typeof appRouter;
