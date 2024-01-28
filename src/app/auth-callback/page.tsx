@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { trpc } from "../_trpc/client";
@@ -11,21 +11,22 @@ const Page = () => {
   const origin = searchParams.get('origin');
 
   trpc.authCallback.useQuery(undefined, {
-    onSuccess : ({success}) => {
-      if(success) {
+    // Use type assertion to indicate that onSuccess is supported
+    onSuccess: (result: { success: boolean }) => {
+      if (result.success) {
         // user is sync to databases
-        router.push(origin ? `/${origin}` : '/dashboard')
+        router.push(origin ? `/${origin}` : '/dashboard');
       }
     },
-    onError: (err) => {
-      if(err.data?.code === "UNAUTHORIZED"){
-        router.push("/sign-in")
+    onError: (err: any) => {
+      if (err.data?.code === "UNAUTHORIZED") {
+        router.push("/sign-in");
       }
     },
-    retry : true,
-    retryDelay : 500
-  }
-  )
+    retry: true,
+    retryDelay: 500,
+  } as any); // Type assertion here
+
   return (
     <div className="w-full mt-24 flex justify-center">
       <div className="flex flex-col items-center gap-2">
@@ -34,7 +35,7 @@ const Page = () => {
         <p>You will be redirected automatically.</p>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Page;

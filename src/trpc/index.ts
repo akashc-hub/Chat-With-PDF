@@ -9,7 +9,7 @@ export const appRouter = router({
     const user = await getUser(); // Use 'await' to wait for the Promise to resolve
 
     if (!user?.id || !user?.email) {
-      throw new TRPCError({ code: "UNAUTHORIZED" });
+      throw new TRPCError({ code: "UNAUTHORIZED" })
 
       // Check if user is in the Database
       const dbUser = await db.user.findFirst({
